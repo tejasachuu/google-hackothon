@@ -1,0 +1,107 @@
+/* components/QueryBox.module.css */
+
+.queryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Use min-height to ensure it takes at least full height */
+    background: linear-gradient(to right, #00c6ff, #0072ff); /* Gradient background */
+    padding: 1rem;
+  }
+  
+  .queryBox {
+    width: 100%;
+    max-width: 700px; /* Increased max width */
+    padding: 2rem; /* More padding for the form */
+    background-color: white; /* White background for the form */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    display: flex;
+    align-items: center;
+  }
+  
+  .inputField {
+    flex-grow: 1;
+    padding: 1rem; /* Increased padding */
+    margin-right: 1rem;
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 10px;
+    outline: none;
+    transition: border 0.3s; /* Smooth border transition */
+  }
+  
+  .inputField:focus {
+    border-color: #0072ff; /* Change border color on focus */
+  }
+  
+  .submitButton {
+    padding: 1rem; /* Increased padding */
+    background-color: #0072ff; /* Primary button color */
+    color: white;
+    border-radius: 10px;
+    transition: background-color 0.3s; /* Smooth background transition */
+  }
+  
+  .submitButton:hover {
+    background-color: #005bb5; /* Darker on hover */
+  }
+  
+  .listenButton {
+    padding: 1rem;
+    background-color: #ff5722; /* Red color for listening */
+    color: white;
+    border-radius: 10px;
+    margin-left: 1rem;
+    transition: background-color 0.3s; /* Smooth background transition */
+  }
+  
+  .listenButton:hover {
+    background-color: #e64a19; /* Darker on hover */
+  }
+  
+  .responseContainer {
+    margin-top: 2rem; /* Space above the response container */
+    width: 100%;
+    max-width: 700px; /* Same max width as the query box */
+    padding: 1.5rem; /* Increased padding */
+    background-color: #f9f9f9; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .responseText {
+    margin-bottom: 1rem;
+    font-size: 1.1rem; /* Larger font for better readability */
+    line-height: 1.5; /* Increased line height for clarity */
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 1rem; /* Space between buttons */
+  }
+  
+  .actionButton {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: white;
+    transition: transform 0.2s; /* Add a scale effect */
+  }
+  
+  .copyButton {
+    background-color: #4caf50; /* Green for copy */
+  }
+  
+  .copyButton:hover {
+    transform: scale(1.05); /* Scale up on hover */
+  }
+  
+  .downloadButton {
+    background-color: #ffeb3b; /* Yellow for download */
+    color: black; /* Black text for contrast */
+  }
+  
+  .downloadButton:hover {
+    transform: scale(1.05); /* Scale up on hover */
+  }
+  

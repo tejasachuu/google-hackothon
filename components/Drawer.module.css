@@ -1,0 +1,13 @@
+.drawerButton {
+    transition: all 0.3s ease;
+  }
+  
+  .drawerButton:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .linkHover:hover {
+    background-color: rgba(229, 231, 235, 0.7); /* Equivalent to Tailwind's gray-100 */
+    transition: background-color 0.3s ease;
+  }
+  
