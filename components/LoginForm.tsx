@@ -1,26 +1,25 @@
-"use client"; 
+"use client";
+
 import { useState } from 'react';
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState<string>(''); 
-  const [password, setPassword] = useState<string>(''); 
-  const [errorMessage, setErrorMessage] = useState<string>(''); // State for error messages
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false); // State for loading
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setErrorMessage(''); // Clear previous errors
 
     // Input validation - check if fields are empty
     if (!email || !password) {
-      setErrorMessage("Please enter both email and password."); // Set error message
+      alert('Please enter both email and password.');
       return;
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setErrorMessage("Please enter a valid email address.");
+      alert('Please enter a valid email address.');
       return;
     }
 
@@ -37,10 +36,11 @@ const LoginForm: React.FC = () => {
         localStorage.setItem('token', data.token);
         window.location.href = '/'; // Redirect on successful login
       } else {
-        setErrorMessage(data.message || "Invalid credentials. If you don't have an account, please sign up.");
+        alert(data.message || 'Invalid credentials. If you don\'t have an account, please sign up.');
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again later.");
+      alert('An error occurred. Please try again later.');
+      console.error('Login error:', error); // Log error for debugging
     } finally {
       setIsLoading(false); // Reset loading state
     }
@@ -50,7 +50,6 @@ const LoginForm: React.FC = () => {
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-400 to-blue-600">
       <h2 className="text-4xl font-bold text-white mb-6">Login</h2>
       <form onSubmit={handleLogin} className="w-full max-w-sm p-6 bg-white rounded-lg shadow-xl">
-        {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>} {/* Display error message */}
         <input
           type="email"
           value={email}
@@ -70,7 +69,7 @@ const LoginForm: React.FC = () => {
         </button>
       </form>
       <p className="mt-4 text-white">
-        Don't have an account? <a href="/register" className="underline">Sign up here</a>
+        Dont have an account? <a href="/register" className="underline">Sign up here</a>
       </p>
     </div>
   );

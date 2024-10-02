@@ -1,18 +1,25 @@
-"use client"; 
+"use client";
+
 import { useState } from 'react';
 
 const RegisterForm: React.FC = () => {
-  const [email, setEmail] = useState<string>(''); 
-  const [password, setPassword] = useState<string>(''); 
-  const [username, setUsername] = useState<string>(''); 
-  const [errorMessage, setErrorMessage] = useState<string>(''); // State for error messages
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Input validation - check if fields are empty
     if (!username || !email || !password) {
-      setErrorMessage('Please enter a username, email, and password.');
+      alert('Please enter a username, email, and password.');
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
       return;
     }
 
@@ -24,17 +31,15 @@ const RegisterForm: React.FC = () => {
       });
 
       const data = await res.json();
-
       if (res.ok) {
         alert('User registered successfully');
-        window.location.href = '/login';
+        window.location.href = '/login'; // Redirect to login page
       } else {
-        // Show error message based on response
-        setErrorMessage(data.message || 'Failed to register. Please try again.');
+        alert(data.message || 'Failed to register. Please try again.');
       }
     } catch (error) {
-      // Catch network or other errors
-      setErrorMessage('An error occurred. Please try again later.');
+      alert('An error occurred. Please try again later.');
+      console.error('Registration error:', error); // Log error for debugging
     }
   };
 
@@ -42,9 +47,6 @@ const RegisterForm: React.FC = () => {
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-green-600">
       <h2 className="text-3xl font-bold text-white mb-6">Register</h2>
       <form onSubmit={handleRegister} className="w-full max-w-sm p-6 bg-white rounded-lg shadow-xl">
-        {errorMessage && ( // Display error message if exists
-          <p className="text-red-500 mb-4">{errorMessage}</p>
-        )}
         <input
           type="text"
           value={username}

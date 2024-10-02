@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             contents: [
               {
                 parts: [
-                  { text: query } // Pass the query to the "text" field
+                  { text: query }
                 ]
               }
             ],
@@ -45,7 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       // Extract the answer from the response
       const answer = data.candidates[0].content.parts
-        .map((part: any) => part.text) // Combine all parts to avoid truncation
+        .map((part: { text: string }) => part.text) // Specify the type
         .join(' ');
 
       // Clean up the answer (remove unwanted formatting)
